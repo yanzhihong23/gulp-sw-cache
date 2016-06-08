@@ -1,11 +1,11 @@
-function IndexController() {
+function SwController() {
   this._registerServiceWorker();
 }
 
-IndexController.prototype._registerServiceWorker = function() {
+SwController.prototype._registerServiceWorker = function() {
   if (!navigator.serviceWorker) return;
 
-  var indexController = this;
+  var swController = this;
 
   navigator.serviceWorker.register('<%= filename %>').then(function(reg) {
     if (!navigator.serviceWorker.controller) {
@@ -13,17 +13,17 @@ IndexController.prototype._registerServiceWorker = function() {
     }
 
     if (reg.waiting) {
-      indexController._updateReady(reg.waiting);
+      swController._updateReady(reg.waiting);
       return;
     }
 
     if (reg.installing) {
-      indexController._trackInstalling(reg.installing);
+      swController._trackInstalling(reg.installing);
       return;
     }
 
     reg.addEventListener('updatefound', function() {
-      indexController._trackInstalling(reg.installing);
+      swController._trackInstalling(reg.installing);
     });
   });
 
@@ -37,15 +37,15 @@ IndexController.prototype._registerServiceWorker = function() {
   });
 };
 
-IndexController.prototype._trackInstalling = function(worker) {
-  var indexController = this;
+SwController.prototype._trackInstalling = function(worker) {
+  var swController = this;
   worker.addEventListener('statechange', function() {
     if (worker.state == 'installed') {
-      indexController._updateReady(worker);
+      swController._updateReady(worker);
     }
   });
 };
 
-IndexController.prototype._updateReady = function(worker) {
+SwController.prototype._updateReady = function(worker) {
   worker.postMessage({action: 'skipWaiting'});
 };
