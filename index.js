@@ -51,7 +51,7 @@ function sw(options) {
   }
 
   function end() {
-    var template = fs.readFileSync('template/sw.js', 'utf8');
+    var template = fs.readFileSync(__dirname + '/template/sw.js', 'utf8');
     var content = ejs.render(template, {version: version, versionPrefix: versionPrefix, files: files});
 
     var swFile = new gutil.File({
@@ -61,7 +61,7 @@ function sw(options) {
       contents: new Buffer(content)
     });
 
-    template = fs.readFileSync('template/sw.controller.js', 'utf8');
+    template = fs.readFileSync(__dirname + '/template/sw.controller.js', 'utf8');
     content = ejs.render(template, {filename: filename});;
 
     var ctrlFile = new gutil.File({
