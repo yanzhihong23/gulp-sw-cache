@@ -51,6 +51,8 @@ function sw(options) {
   }
 
   function end() {
+    console.log('total files: ' + files.length);
+    
     var template = fs.readFileSync(__dirname + '/template/sw.js', 'utf8');
     var content = ejs.render(template, {version: version, versionPrefix: versionPrefix, files: files});
 
