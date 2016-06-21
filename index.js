@@ -29,6 +29,8 @@ function sw(options) {
   exclude = Array.prototype.concat(options.exclude || []).concat(include);
   cwd = process.cwd();
 
+  files = files.concat(include);
+
   function shouldExcludeFile(filePath) {
     return exclude.some(minimatch.bind(null, filePath));
   }
