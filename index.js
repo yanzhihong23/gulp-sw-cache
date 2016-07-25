@@ -21,8 +21,9 @@ function sw(options) {
 
   options = options || {};
 
-  versionPrefix = options.versionPrefix || 'sw-';
-  version = versionPrefix + crypto.createHash('sha256').digest("hex");
+  versionPrefix = options.versionPrefix || 'sw';
+  // version = versionPrefix + crypto.createHash('sha256').digest("hex");
+  version = versionPrefix + '-'  + new Date().getTime();
 
   filename = options.filename || 'sw.js';
   include = Array.prototype.concat(options.include || []);

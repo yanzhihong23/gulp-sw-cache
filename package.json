@@ -1,6 +1,6 @@
 {
   "name": "gulp-sw-cache",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Add Offline cache for webapp",
   "main": "index.js",
   "scripts": {
